@@ -1,17 +1,11 @@
 {
   "name": "algoritmo-genetico",
-  "description": "Algoritmo genético para encontrar valores que minimizem funções de segundo grau",
+  "description": "Algoritmo genético",
   "main": "app/index.html",
   "authors": [
-    "Pedro Henrique Ramos Souza"
+    "Kevilin Rodrigues"
   ],
   "license": "ISC",
-  "keywords": [
-    "angoritmo",
-    "genetico",
-    "funcoes"
-  ],
-  "homepage": "https://github.com/phramos/algoritmo-genetico",
   "moduleType": [],
   "ignore": [
     "**/.*",
