@@ -119,7 +119,7 @@
 
         //Aplica a mutacao baseando-se nos individuos do indice informado na geracao informada
         $scope.mutacao = function mutacao(iIndividuo1, iIndividuo2, numeroGeracao) {
-            //Obtem os indices com base nos indices e geracao
+            //Obtem os individuos com base nos indices e geracao
             var individuo1 = $scope.geracao[numeroGeracao + 1].populacao[iIndividuo1];
             var individuo2 = $scope.geracao[numeroGeracao + 1].populacao[iIndividuo2];
 
@@ -179,11 +179,15 @@
             var individuo1 = $scope.geracao[numeroGeracao].populacao[iIndividuo1];
             var individuo2 = $scope.geracao[numeroGeracao].populacao[iIndividuo2];
 
-            if (individuo1.aptidao < individuo2.aptidao) {
+            if (individuo1.aptidao == $scope.valorProcurado) {
                 return iIndividuo1;
-            } else {
+            } 
+            
+            if (individuo2.aptidao == $scope.valorProcurado) {
                 return iIndividuo2;
             }
+
+            return iIndividuo1;
         };
 
         function gerarDadosGrafico(numeroGeracao) {
