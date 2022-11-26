@@ -1,7 +1,7 @@
 {
   "name": "algoritmo-genetico",
   "version": "1.0.0",
-  "description": "Algoritmo genético para encontrar valores que minimizem funções de segundo grau",
+  "description": "Algoritmo genético",
   "main": "/app/index.js",
   "scripts": {
     "postinstall": "bower install",
