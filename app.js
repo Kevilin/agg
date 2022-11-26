@@ -15,7 +15,7 @@
             this.xdecimal = parseInt(xbin, 2);
             this.ybin = ybin.toString();
             this.ydecimal = parseInt(ybin, 2);
-            this.wbin = xbin.toString();
+            this.wbin = wbin.toString();
             this.wdecimal = parseInt(wbin, 2);
             this.zbin = zbin.toString();
             this.zdecimal = parseInt(zbin, 2);
