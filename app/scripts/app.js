@@ -2,8 +2,8 @@
     var modulo = angular.module('appModule', ['ui.bootstrap', 'chart.js']);
 
     modulo.controller('AppCtrl', function ($scope) {
-        $scope.taxaCrossover        = 70;
-        $scope.taxaMutacao          = 1;
+        $scope.taxaCrossover        = 100;
+        $scope.taxaMutacao          = 100;
         $scope.tamanhoPopulacao     = 10;
         $scope.quantidadeGeracoes   = 8;
         $scope.geracao              = [];
@@ -69,8 +69,10 @@
 
             //Verifica se ocorrera o crossover
             if (getRandomInt(0, 100) < $scope.taxaCrossover) {
+                console.log('Aconteceu crossover');
                 $scope.crossover(iPai, iMae, numeroGeracao);
             } else {
+                console.log('Nao aconteceu crossover');
                 $scope.geracao[numeroGeracao + 1] = {
                     descricao: "Geração " + (numeroGeracao + 1),
                     populacao: new Array($scope.tamanhoPopulacao)
@@ -80,6 +82,7 @@
 
             //Verifica se ocorrera mutacao
             if (getRandomInt(0, 100) < $scope.taxaMutacao) {
+                console.log('Aconteceu mutação');
                 $scope.mutacao(iPai, iMae, numeroGeracao);
             }
 
@@ -97,8 +100,9 @@
             var pai = $scope.geracao[numeroGeracao + 1].populacao[iPai];
             var mae = $scope.geracao[numeroGeracao + 1].populacao[iMae];
 
-            var filho1 = new Individuo(pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)), pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)), pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)), pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)));
-            var filho2 = new Individuo(mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)), mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)), mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)), mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)));
+            var filho1 = new Individuo(pai.xbin.substr(0, 3).concat(mae.xbin.substr(3, 2)), pai.ybin.substr(0, 3).concat(mae.ybin.substr(3, 2)), pai.wbin.substr(0, 3).concat(mae.wbin.substr(3, 2)), pai.zbin.substr(0, 3).concat(mae.zbin.substr(3, 2)));
+
+            var filho2 = new Individuo(mae.xbin.substr(0, 3).concat(pai.xbin.substr(3, 2)), mae.ybin.substr(0, 3).concat(pai.ybin.substr(3, 2)), mae.wbin.substr(0, 3).concat(pai.wbin.substr(3, 2)), mae.zbin.substr(0, 3).concat(pai.zbin.substr(3, 2)));
             
             //adicionna os filhos na geracao criada no lugar de seus pais
             $scope.geracao[numeroGeracao + 1].populacao[iPai] = filho1;
@@ -113,8 +117,8 @@
             var individuo2 = $scope.geracao[numeroGeracao + 1].populacao[iIndividuo2];
 
             //Muta os individuos
-            individuo1 = new Individuo(mutar(individuo1.bin), mutar(individuo1.bin), mutar(individuo1.bin), mutar(individuo1.bin));
-            individuo2 = new Individuo(mutar(individuo2.bin), mutar(individuo2.bin), mutar(individuo2.bin), mutar(individuo2.bin));
+            individuo1 = new Individuo(mutar(individuo1.xbin), mutar(individuo1.ybin), mutar(individuo1.wbin), mutar(individuo1.zbin));
+            individuo2 = new Individuo(mutar(individuo1.xbin), mutar(individuo1.ybin), mutar(individuo1.wbin), mutar(individuo1.zbin));
 
             //Coloca os individuos mutados na geracao
             $scope.geracao[numeroGeracao + 1].populacao[iIndividuo1] = individuo1;
@@ -179,7 +183,10 @@
             var resultadosNaFuncao = new Array();
             var pop = $scope.geracao[numeroGeracao].populacao;
             for (var i = 0; i < pop.length; i++) {
-                decimais.push(pop[i].decimal);
+                var descricao = "X=" + pop[i].xdecimal.toString() + " Y=" + pop[i].ydecimal.toString() + " W=" + pop[i].wdecimal.toString() + " Z=" + pop[i].zdecimal.toString();
+                console.log(descricao);
+                decimais.push(descricao);
+
                 resultadosNaFuncao.push(pop[i].aptidao);
             }
             $scope.geracao[numeroGeracao].decimais = decimais;
