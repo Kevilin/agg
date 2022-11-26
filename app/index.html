@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Estilos-->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!--Scripts-->
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-chart.js/angular-chart.js"></script>
+    <script src="scripts/app.js"></script>
+
+    <title>Algoritmo Genético</title>
+</head>
+<body ng-app="appModule" ng-controller="AppCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Algoritmo Genetico</a>
+            </div>
+
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+<div class="jumbotron">
+
+    <div class="container">
+        <form>
+            <div class="row col-md-12">
+                <div class="form-group col-md-3">
+                    <label for="taxaCrossover">Taxa de Crossover</label>
+                    <input type="number" class="form-control" id="taxaCrossover" ng-model="taxaCrossover" placeholder="Taxa de Crossover">
+                </div>
+
+
+                <div class="form-group col-md-3">
+                    <label for="taxaCrossover">Taxa de Mutação</label>
+                    <input type="number" class="form-control" id="taxaMutacao" ng-model="taxaMutacao" placeholder="Taxa de Crossover">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="tamanhoPopulacao">Tamanho da População</label>
+                    <input type="number" class="form-control" id="tamanhoPopulacao" ng-model="tamanhoPopulacao" placeholder="Tamanho da população">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="quantidadeGeracoes">Quantidade de Gerações</label>
+                    <input type="number" class="form-control" id="quantidadeGeracoes" ng-model="quantidadeGeracoes" placeholder="Quantidade de gerações">
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="checkbox">
+                    <label> <input type="checkbox" ng-model="elite">Ativar elitismo </label>
+                </div>
+                <div class="checkbox">
+                    <label> <input type="checkbox" ng-model="accordionAberto">Expandir seções</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="form-group col-md-3">
+                        <button class="btn btn-primary" ng-click="algoritmoGenetico()">Iniciar Algoritmo Genético</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+        <div ng-repeat="g in geracao">
+
+            <uib-accordion>
+                <uib-accordion-group heading="{{g.descricao}}" is-open="accordionAberto">
+                    <div class="col-md-12   ">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td>X Binário</td>
+                                <td>X Decimal</td>
+                                <td>Y Binário</td>
+                                <td>Y Decimal</td>
+                                <td>W Binário</td>
+                                <td>W Decimal</td>
+                                <td>Z Binário</td>
+                                <td>Z Decimal</td>
+                                <td>Valor na funcao 5.x + y^2 + w + 3^3</td>
+                                <td>Resultado</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="individuo in g.populacao | orderBy:ordem">
+                                <td>{{individuo.xbin}}</td>
+                                <td>{{individuo.xdecimal}}</td>
+                                <td>{{individuo.ybin}}</td>
+                                <td>{{individuo.ydecimal}}</td>
+                                <td>{{individuo.wbin}}</td>
+                                <td>{{individuo.wdecimal}}</td>
+                                <td>{{individuo.zbin}}</td>
+                                <td>{{individuo.zdecimal}}</td>
+                                <td>5.{{individuo.xdecimal}}+{{individuo.ydecimal}}^2+{{individuo.wdecimal}}+{{individuo.wdecimal}}^3</td>
+                                <td>{{individuo.aptidao}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-6">
+                        <canvas id="line" class="chart chart-line" chart-data="g.valoresNaFuncao"
+                                chart-labels="g.decimais" chart-legend="true" chart-series="series"
+                                chart-click="onClick" >
+                        </canvas>
+                    </div>
+                </uib-accordion-group>
+            </uib-accordion>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
