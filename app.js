@@ -8,7 +8,7 @@
         $scope.quantidadeGeracoes   = 8;
         $scope.valorProcurado       = 185;
         $scope.geracao              = [];
-        $scope.series               = ["Gráfico de valores na função: 5.x + y^2 + w + z^3"];
+        $scope.series               = ["Gráfico de valores na função: (5.x) + (y^2) + w + (z^3) para achar o resultado = 185"];
 
         function Individuo(xbin, ybin, wbin, zbin) {
             this.xbin = xbin.toString();
@@ -22,9 +22,9 @@
             this.aptidao = calculaFuncao(this.xdecimal, this.ydecimal, this.wdecimal, this.zdecimal);
 
             if (this.aptidao == $scope.valorProcurado) {
-                this.valorEncontrado = "Valor encontrado!";
+                this.resultado = " (Valor encontrado!)";
             } else{
-                this.valorEncontrado = "";
+                this.resultado = " (Valor não encontrado)";
             }
 
         };
