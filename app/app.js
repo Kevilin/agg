@@ -6,6 +6,7 @@
         $scope.taxaMutacao          = 100;
         $scope.tamanhoPopulacao     = 10;
         $scope.quantidadeGeracoes   = 8;
+        $scope.valorProcurado       = 185;
         $scope.geracao              = [];
         $scope.series               = ["Gráfico de valores na função: 5.x + y^2 + w + z^3"];
 
@@ -19,6 +20,13 @@
             this.zbin = zbin.toString();
             this.zdecimal = parseInt(zbin, 2);
             this.aptidao = calculaFuncao(this.xdecimal, this.ydecimal, this.wdecimal, this.zdecimal);
+
+            if (this.aptidao == $scope.valorProcurado) {
+                this.valorEncontrado = "Valor encontrado!";
+            } else{
+                this.valorEncontrado = "";
+            }
+
         };
 
         //Transforma string binarias em string binarias de 5 digitos
@@ -29,7 +37,6 @@
                     if (bin.charAt(0) == "-") {
                         var signal = bin.charAt(0);
                         bin = signal + "0" + bin.substr(1, bin.length - 1);
-
                     } else {
                         bin = "0" + bin;
                     }
@@ -103,7 +110,7 @@
             var filho1 = new Individuo(pai.xbin.substr(0, 3).concat(mae.xbin.substr(3, 2)), pai.ybin.substr(0, 3).concat(mae.ybin.substr(3, 2)), pai.wbin.substr(0, 3).concat(mae.wbin.substr(3, 2)), pai.zbin.substr(0, 3).concat(mae.zbin.substr(3, 2)));
 
             var filho2 = new Individuo(mae.xbin.substr(0, 3).concat(pai.xbin.substr(3, 2)), mae.ybin.substr(0, 3).concat(pai.ybin.substr(3, 2)), mae.wbin.substr(0, 3).concat(pai.wbin.substr(3, 2)), mae.zbin.substr(0, 3).concat(pai.zbin.substr(3, 2)));
-            
+
             //adicionna os filhos na geracao criada no lugar de seus pais
             $scope.geracao[numeroGeracao + 1].populacao[iPai] = filho1;
             $scope.geracao[numeroGeracao + 1].populacao[iMae] = filho2;
@@ -161,6 +168,7 @@
             }
         };
 
+        // Função aptidão, onde é utilizado as variaveis para aplicar a formula
         function calculaFuncao(x, y, w, z) {
             return (5 * x) + (y ** 2) + w + (z ** 3);
         };
@@ -193,17 +201,6 @@
             $scope.geracao[numeroGeracao].valoresNaFuncao = new Array();
             $scope.geracao[numeroGeracao].valoresNaFuncao.push(resultadosNaFuncao);
 
-        };
-
-        //Funcao de comparacao para ordenar com base na aptidao menor, onde aptidao = valor da funcao
-        function compare(a, b) {
-            if (a.aptidao < b.aptidao) {
-                return -1;
-            }
-            if (a.aptidao > b.aptidao) {
-                return 1;
-            }
-            return 0;
         };
 
         function limparGeracao() {

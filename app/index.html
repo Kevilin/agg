@@ -2,31 +2,28 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-
     <!--Estilos-->
     <link
       rel="stylesheet"
       type="text/css"
       href="bower_components/bootstrap/dist/css/bootstrap.min.css"
     />
-
     <!--Scripts-->
     <script src="bower_components/Chart.js/Chart.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-chart.js/angular-chart.js"></script>
-    <script src="scripts/app.js"></script>
-
+    <script src="app.js"></script>
     <title>Algoritmo Genético</title>
   </head>
-  <body ng-app="appModule" ng-controller="AppCtrl">
-    <div class="jumbotron">
+  <body style="background-color:rgb(38, 38, 43);" ng-app="appModule" ng-controller="AppCtrl">
+    <div style="background-color:rgb(38, 38, 43);" class="jumbotron">
       <div class="container">
         <form>
           <div class="row col-md-12">
             <div class="form-group col-md-3">
-              <label for="taxaCrossover">Taxa de Crossover</label>
+              <label style="color:rgb(255, 255, 255);" for="taxaCrossover">Taxa de Crossover</label>
               <input
                 type="number"
                 class="form-control"
@@ -36,7 +33,7 @@
               />
             </div>
             <div class="form-group col-md-3">
-              <label for="taxaCrossover">Taxa de Mutação</label>
+              <label style="color:rgb(255, 255, 255);" for="taxaCrossover">Taxa de Mutação</label>
               <input
                 type="number"
                 class="form-control"
@@ -45,9 +42,8 @@
                 placeholder="Taxa de Crossover"
               />
             </div>
-
             <div class="form-group col-md-3">
-              <label for="tamanhoPopulacao">Tamanho da População</label>
+              <label style="color:rgb(255, 255, 255);" for="tamanhoPopulacao">Tamanho da População</label>
               <input
                 type="number"
                 class="form-control"
@@ -56,9 +52,8 @@
                 placeholder="Tamanho da população"
               />
             </div>
-
             <div class="form-group col-md-3">
-              <label for="quantidadeGeracoes">Quantidade de Gerações</label>
+              <label style="color:rgb(255, 255, 255);" for="quantidadeGeracoes">Quantidade de Gerações</label>
               <input
                 type="number"
                 class="form-control"
@@ -80,10 +75,7 @@
         </form>
         <div ng-repeat="g in geracao">
           <uib-accordion>
-            <uib-accordion-group
-              heading="{{g.descricao}}"
-              is-open="true"
-            >
+            <uib-accordion-group heading="{{g.descricao}}" is-open="true">
               <div class="col-md-12">
                 <table class="table table-striped">
                   <thead>
@@ -113,12 +105,11 @@
                       <td>
                         5.{{individuo.xdecimal}}+{{individuo.ydecimal}}^2+{{individuo.wdecimal}}+{{individuo.wdecimal}}^3
                       </td>
-                      <td>{{individuo.aptidao}}</td>
+                      <td>{{individuo.aptidao}} {{individuo.valorEncontrado}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
               <div class="col-md-12">
                 <canvas
                   id="line"
