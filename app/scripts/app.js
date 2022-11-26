@@ -9,7 +9,7 @@
         $scope.tamanhoPopulacao = 10;
         $scope.quantidadeGeracoes = 8;
         $scope.geracao = [];
-        $scope.series = ["Valor na funcao 5.x + y^2 + w + 3^3"];
+        $scope.series = ["Gráfico de valores na função: 5.x + y^2 + w + 3^3"];
 
         function Individuo(xbin, ybin, wbin, zbin) {
             this.xbin = xbin.toString();
