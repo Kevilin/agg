@@ -21,27 +21,6 @@
     <title>Algoritmo Genético</title>
   </head>
   <body ng-app="appModule" ng-controller="AppCtrl">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbar"
-            aria-expanded="false"
-            aria-controls="navbar"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Algoritmo Genetico</a>
-        </div>
-      </div>
-    </nav>
-
     <div class="jumbotron">
       <div class="container">
         <form>
@@ -103,7 +82,7 @@
           <uib-accordion>
             <uib-accordion-group
               heading="{{g.descricao}}"
-              is-open="accordionAberto"
+              is-open="true"
             >
               <div class="col-md-12">
                 <table class="table table-striped">
@@ -117,12 +96,12 @@
                       <td>W Decimal</td>
                       <td>Z Binário</td>
                       <td>Z Decimal</td>
-                      <td>Função: 5.x + y^2 + w + 3^3</td>
+                      <td>Função: 5.x + y^2 + w + z^3</td>
                       <td>Resultado</td>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="individuo in g.populacao | orderBy:ordem">
+                    <tr ng-repeat="individuo in g.populacao">
                       <td>{{individuo.xbin}}</td>
                       <td>{{individuo.xdecimal}}</td>
                       <td>{{individuo.ybin}}</td>

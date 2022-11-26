@@ -2,14 +2,12 @@
     var modulo = angular.module('appModule', ['ui.bootstrap', 'chart.js']);
 
     modulo.controller('AppCtrl', function ($scope) {
-        $scope.taxaCrossover = 70;
-        $scope.taxaMutacao = 1;
-        $scope.elite = false;
-        $scope.accordionAberto = true;
-        $scope.tamanhoPopulacao = 10;
-        $scope.quantidadeGeracoes = 8;
-        $scope.geracao = [];
-        $scope.series = ["Gráfico de valores na função: 5.x + y^2 + w + 3^3"];
+        $scope.taxaCrossover        = 70;
+        $scope.taxaMutacao          = 1;
+        $scope.tamanhoPopulacao     = 10;
+        $scope.quantidadeGeracoes   = 8;
+        $scope.geracao              = [];
+        $scope.series               = ["Gráfico de valores na função: 5.x + y^2 + w + z^3"];
 
         function Individuo(xbin, ybin, wbin, zbin) {
             this.xbin = xbin.toString();
@@ -50,7 +48,7 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
         };
 
-        //Gera a populacao iniciao de 4 individuoes com valores decimais de -10 ate 10
+        //Gera a populacao iniciao de 10 individuoss com valores decimais de 1 ate 10
         $scope.gerarPrimeiraGeracao = function gerarPopulacaoInicial() {
             $scope.geracao[0] = {
                 descricao: "Geração Inicial",
@@ -58,7 +56,6 @@
 
             };
             for (var i = 0; i < this.tamanhoPopulacao; i++) {
-                //var valorAleatorio = getRandomInt(-10, 10);
                 $scope.geracao[0].populacao[i] = new Individuo(getRandomInt(1, 10).toString(2).to5digit(), getRandomInt(1, 10).toString(2).to5digit(), getRandomInt(1, 10).toString(2).to5digit(), getRandomInt(1, 10).toString(2).to5digit());
             }
             gerarDadosGrafico(0);
@@ -69,7 +66,6 @@
 
             var iPai = torneio(numeroGeracao);
             var iMae = torneio(numeroGeracao);
-
 
             //Verifica se ocorrera o crossover
             if (getRandomInt(0, 100) < $scope.taxaCrossover) {
@@ -103,18 +99,11 @@
 
             var filho1 = new Individuo(pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)), pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)), pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)), pai.bin.substr(0, 3).concat(mae.bin.substr(3, 2)));
             var filho2 = new Individuo(mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)), mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)), mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)), mae.bin.substr(0, 3).concat(pai.bin.substr(3, 2)));
+            
+            //adicionna os filhos na geracao criada no lugar de seus pais
+            $scope.geracao[numeroGeracao + 1].populacao[iPai] = filho1;
+            $scope.geracao[numeroGeracao + 1].populacao[iMae] = filho2;
 
-            if ($scope.elite) {
-                var individuos = [pai, mae, filho1, filho2];
-                individuos.sort(compare);
-                $scope.geracao[numeroGeracao + 1].populacao[iPai] = individuos[0];
-                $scope.geracao[numeroGeracao + 1].populacao[iMae] = individuos[1];
-                var c = 1;
-            } else {
-                //adicionna os filhos na geracao criada no lugar de seus pais
-                $scope.geracao[numeroGeracao + 1].populacao[iPai] = filho1;
-                $scope.geracao[numeroGeracao + 1].populacao[iMae] = filho2;
-            }
         };
 
         //Aplica a mutacao baseando-se nos individuos do indice informado na geracao informada
@@ -219,7 +208,5 @@
             $scope.gerarPrimeiraGeracao();
             $scope.criarGeracoes($scope.quantidadeGeracoes);
         };
-
-
     });
 })();
