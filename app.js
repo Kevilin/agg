@@ -58,7 +58,7 @@
         //Gera a populacao iniciao de 10 individuoss com valores decimais de 1 ate 10
         $scope.gerarPrimeiraGeracao = function gerarPopulacaoInicial() {
             $scope.geracao[0] = {
-                descricao: "Geração Inicial",
+                descricao: "População Inicial",
                 populacao: new Array(this.tamanhoPopulacao)
 
             };
