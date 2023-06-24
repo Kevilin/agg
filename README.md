@@ -7,7 +7,6 @@ Aplicação no qual foi criado um algoritmo genetico para resolver uma função 
 ### `bower install`
 ### `npm start`
 
-
 Será inicializado em: [http://localhost:3000](http://localhost:3000) .
 
 <div style="display: inline_block"><br>
