@@ -16,3 +16,4 @@ Será inicializado em: [http://localhost:3000](http://localhost:3000) .
   <img align="center" alt="CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
   <img align="center" alt="Angular" height="60" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-original.svg">
   </div>
+  
